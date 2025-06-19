@@ -1,6 +1,8 @@
+// Initialize scores
 let computerScore = 0;
 let humanScore = 0;
 
+// Grab relevant elements
 let container = document.querySelector('.play-container')
 let playBtns = document.querySelectorAll('.rps')
 let result = document.querySelector('.result')
@@ -8,17 +10,18 @@ let score = document.querySelector('.scores')
 let choices = document.querySelector('.choices')
 let winner = document.querySelector('.winner')
 
+// Create way to reset
 let resetBtn = document.createElement('btn')
 resetBtn.classList.toggle('reset')
 resetBtn.innerText = 'Reset'
-resetBtn.style.backgroundColor = 'red'
-resetBtn.style.border = '2px solid black'
+
 
 let playerChoice = Array.from(playBtns)
 let humChoice;
 let computerChoice;
 
 console.log('Rock, Paper, Scissors!');
+
 
 function getComputerChoice(choice) {
     if (choice == 1) {
@@ -69,39 +72,31 @@ function playGame() {
         container.appendChild(resetBtn)
         return
     }
-
     let compChoice = Math.floor(Math.random() * 3) + 1;
-
     computerChoice = getComputerChoice(compChoice);
-
-    choices.textContent = `Player chose ${humChoice} || Computer chose ${computerChoice}`;
-
-    console.log(`\n--- Game Over! Final Scores ---`);
-    score.textContent = `Human: ${humanScore} | Computer: ${computerScore}`;
 
 }
 
 resetBtn.addEventListener('click', () => {
-    computerScore = 0;
-    humanScore = 0;
-    result.textContent = ''
-    choices.textContent = ''
-    score.textContent = ''
-    winner.textContent = ''
-    resetBtn.remove()
-})
-
-playerChoice.forEach(choice => {
-    choice.addEventListener('click', (e) => {
-        humChoice = e.target.value
-        let resultOfRound = playRound(computerChoice, humChoice);
-
-        result.textContent = resultOfRound
-        playGame()
+        computerScore = 0;
+        humanScore = 0;
+        result.textContent = ''
+        choices.textContent = ''
+        score.textContent = ''
+        winner.textContent = ''
+        resetBtn.remove()
     })
-})
 
-
+    playerChoice.forEach(choice => {
+        choice.addEventListener('click', (e) => {
+            humChoice = e.target.value
+            let resultOfRound = playRound(computerChoice, humChoice);
+            score.textContent = `Human: ${humanScore} | Computer: ${computerScore}`;
+            choices.textContent = `Player chose ${humChoice} || Computer chose ${computerChoice}`;
+            result.textContent = resultOfRound
+            playGame()
+        })
+    })
 
 
 

@@ -1,0 +1,168 @@
+/* Universal Box Model */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0; /* Adding padding:0 to reset all default paddings */
+}
+
+/* Body Styling for Centering and Background */
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif; /* Set font for whole body */
+    background: linear-gradient(to bottom right, #e0f2f7, #c6e7f2); /* Light blue gradient */
+    color: #333; /* Default text color */
+}
+
+/* Headings Base Styling */
+h1, h2, h3 {
+    text-align: center;
+    padding: 0; /* Resetting padding from your previous code, we'll use margin-bottom */
+}
+
+h1 {
+    font-size: 2.8em;
+    color: #1a237e; /* Dark blue for title */
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+h2 {
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    min-height: 1.6em; /* Helps prevent layout shift when empty */
+}
+
+h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    min-height: 1.2em; /* Helps prevent layout shift when empty */
+}
+
+/* Main Game Container */
+.play-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 90%; /* Responsive width */
+    max-width: 550px; /* Max width for larger screens */
+}
+
+/* Buttons Container */
+.buttons {
+    display: flex;
+    gap: 20px; /* Space between buttons */
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+    justify-content: center;
+}
+
+/* Individual RPS Buttons */
+.rps {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4CAF50; /* Green for play buttons */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.rps:hover {
+    background-color: #45a049;
+    transform: translateY(-3px); /* More pronounced lift */
+}
+
+.rps:active {
+    background-color: #3e8e41;
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+/* Result and Choices Text */
+.result {
+    color: #e67e22; /* Orange for general results */
+    font-weight: bold;
+}
+
+.choices {
+    color: #7f8c8d; /* Grey for choices */
+    font-style: italic;
+}
+
+/* Score Display */
+.scores {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #2c3e50; /* Darker blue-grey for scores */
+    margin-top: 20px;
+    border-top: 1px solid #eee; /* Subtle separator */
+    padding-top: 15px;
+}
+
+/* Winner Message */
+.winner {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 30px;
+    color: #c0392b; /* Red for loss (you'll handle green/win with JS) */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Reset Button */
+.reset {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #3498db; /* A blue for reset */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 25px; /* Space above it */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.reset:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.reset:active {
+    background-color: #2471a3;
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+/* Media Queries for smaller screens */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+    .rps {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    .buttons {
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    .play-container {
+        padding: 25px;
+    }
+    .winner {
+        font-size: 1.5em;
+    }
+}
