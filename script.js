@@ -1,5 +1,10 @@
+let computerScore = 0;
+let humanScore = 0;
 
+let playBtns = document.querySelectorAll('.rps')
 
+let playerChoice = Array.from(playBtns)
+let humChoice;
 
 
 console.log('Rock, Paper, Scissors!');
@@ -48,34 +53,37 @@ function playRound(computerChoice, humanChoice) {
 
 
 function playGame() {
-    let computerScore = 0;
-    let humanScore = 0;
 
     let compChoice = Math.floor(Math.random() * 3) + 1;
-    let humChoice = prompt('Rock, Paper or Scissors?').toLowerCase();
 
     let computerChoice = getComputerChoice(compChoice);
 
-    let resultOfRound = playRound(computerChoice, humanChoice);
+    let resultOfRound = playRound(computerChoice, humChoice);
+
     console.log(resultOfRound)
-    console.log(`Player chose ${humanChoice} || Computer chose ${computerChoice}`)
-    console.log(`Next round is ${i + 1}`);
+    console.log(`Player chose ${humChoice} || Computer chose ${computerChoice}`)
 
     console.log(`\n--- Game Over! Final Scores ---`);
     console.log(`Human: ${humanScore} | Computer: ${computerScore}`);
 
 
-    if (computerScore > humanScore) {
-        console.log(`Sorry you have lost: Computer: ${computerScore} | Player: ${humanScore}`);
-    } else if (humanScore > computerScore) {
-        console.log(`You have won!: Computer: ${computerScore} | Player: ${humanScore}`);
-    } else {
-        console.log(`The game is a tie!`)
-    }
+    // if (computerScore > humanScore) {
+    //     console.log(`Sorry you have lost: Computer: ${computerScore} | Player: ${humanScore}`);
+    // } else if (humanScore > computerScore) {
+    //     console.log(`You have won!: Computer: ${computerScore} | Player: ${humanScore}`);
+    // } else {
+    //     console.log(`The game is a tie!`)
+    // }
 }
 
+playerChoice.forEach(choice => {
+    choice.addEventListener('click', (e)=>{
+        humChoice = e.target.value 
+        playGame()
+    })
+})
 
 
-playGame()
+
 
 
