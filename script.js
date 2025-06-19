@@ -1,11 +1,22 @@
 let computerScore = 0;
 let humanScore = 0;
 
+let container = document.querySelector('.play-container')
 let playBtns = document.querySelectorAll('.rps')
+let result = document.querySelector('.result')
+let score = document.querySelector('.scores')
+let choices = document.querySelector('.choices')
+let winner = document.querySelector('.winner')
+
+let resetBtn = document.createElement('btn')
+resetBtn.classList.toggle('reset')
+resetBtn.innerText = 'Reset'
+resetBtn.style.backgroundColor = 'red'
+resetBtn.style.border = '2px solid black'
 
 let playerChoice = Array.from(playBtns)
 let humChoice;
-
+let computerChoice;
 
 console.log('Rock, Paper, Scissors!');
 
@@ -18,7 +29,6 @@ function getComputerChoice(choice) {
         return 'Scissors';
     }
 }
-
 
 function playRound(computerChoice, humanChoice) {
     if (humanChoice == computerChoice) {
@@ -46,39 +56,47 @@ function playRound(computerChoice, humanChoice) {
     } else if (humanChoice == 'Scissors' && computerChoice == 'Paper') {
         humanScore += 1;
         return `You win ${humanChoice} beats ${computerChoice}`;
-
     }
 }
 
-
-
 function playGame() {
+    if (humanScore == 5) {
+        winner.textContent = `You have won!: Computer: ${computerScore} | Player: ${humanScore}`
+        container.appendChild(resetBtn)
+        return
+    } else if (computerScore == 5) {
+        winner.textContent = `Sorry you have lost: Computer: ${computerScore} | Player: ${humanScore}`
+        container.appendChild(resetBtn)
+        return
+    }
 
     let compChoice = Math.floor(Math.random() * 3) + 1;
 
-    let computerChoice = getComputerChoice(compChoice);
+    computerChoice = getComputerChoice(compChoice);
 
-    let resultOfRound = playRound(computerChoice, humChoice);
-
-    console.log(resultOfRound)
-    console.log(`Player chose ${humChoice} || Computer chose ${computerChoice}`)
+    choices.textContent = `Player chose ${humChoice} || Computer chose ${computerChoice}`;
 
     console.log(`\n--- Game Over! Final Scores ---`);
-    console.log(`Human: ${humanScore} | Computer: ${computerScore}`);
+    score.textContent = `Human: ${humanScore} | Computer: ${computerScore}`;
 
-
-    // if (computerScore > humanScore) {
-    //     console.log(`Sorry you have lost: Computer: ${computerScore} | Player: ${humanScore}`);
-    // } else if (humanScore > computerScore) {
-    //     console.log(`You have won!: Computer: ${computerScore} | Player: ${humanScore}`);
-    // } else {
-    //     console.log(`The game is a tie!`)
-    // }
 }
 
+resetBtn.addEventListener('click', () => {
+    computerScore = 0;
+    humanScore = 0;
+    result.textContent = ''
+    choices.textContent = ''
+    score.textContent = ''
+    winner.textContent = ''
+    resetBtn.remove()
+})
+
 playerChoice.forEach(choice => {
-    choice.addEventListener('click', (e)=>{
-        humChoice = e.target.value 
+    choice.addEventListener('click', (e) => {
+        humChoice = e.target.value
+        let resultOfRound = playRound(computerChoice, humChoice);
+
+        result.textContent = resultOfRound
         playGame()
     })
 })
