@@ -29,6 +29,7 @@ function getComputerChoice(choice) {
   }
 }
 
+// Determine the winner of the round
 function playRound(computerChoice, humanChoice) {
   if (humanChoice == computerChoice) {
     return `It is a draw: Both chose ${humanChoice}`;
@@ -53,6 +54,7 @@ function playRound(computerChoice, humanChoice) {
   }
 }
 
+// Check winner of Game and display score and winner
 function playGame(humChoice) {
   if (humanScore == 5) {
     winner.textContent = `You have won!: Computer: ${computerScore} | Player: ${humanScore}`;
@@ -92,6 +94,7 @@ resetBtn.addEventListener("click", () => {
   resetBtn.remove();
 });
 
+// Listen for click on any of the three RPS buttons
 playerChoice.forEach((choice) => {
   choice.addEventListener("click", (e) => {
     let humChoice = e.target.value;
